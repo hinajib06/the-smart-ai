@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A professional blogging platform featuring technology, travel, and lifestyle content">
+    <meta name="keywords" content="blog, technology, travel, lifestyle, articles">
+    <title>TechNomad Blog | Modern Perspectives</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background: #f4f4f4;
+        }
+
+        /* Header */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item.active,
+        .nav-item:hover {
+            background: #007bff;
+            color: #fff;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Blog Posts */
+        .post-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .post-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .post-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .ad-unit {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: #fff;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">TechNomad</div>
+            <div class="nav-menu">
+                <div class="nav-item active" data-category="all">All</div>
+                <div class="nav-item" data-category="technology">Technology</div>
+                <div class="nav-item" data-category="travel">Travel</div>
+                <div class="nav-item" data-category="lifestyle">Lifestyle</div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Ad Unit - Header -->
+    <div class="ad-unit">
+        <!-- Replace with your Google AdSense code -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+            data-ad-slot="XXXXXXXXXX"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="post-grid" id="postContainer">
+            <!-- Blog Posts will be dynamically loaded here -->
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="ad-unit">
+                <!-- Sidebar Ad Unit -->
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-format="fluid"
+                    data-ad-layout-key="-gw-3+1f-3d+2z"
+                    data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                    data-ad-slot="XXXXXXXXXX"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 TechNomad Blog. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Sample blog posts data
+        const posts = [
+            {
+                title: "The Future of AI in Technology",
+                excerpt: "Exploring the latest developments in artificial intelligence...",
+                category: "technology",
+                image: "https://source.unsplash.com/random/800x600?tech",
+                date: "March 15, 2024"
+            },
+            {
+                title: "Top Travel Destinations 2024",
+                excerpt: "Discover the most exciting travel locations for this year...",
+                category: "travel",
+                image: "https://source.unsplash.com/random/800x600?travel",
+                date: "March 14, 2024"
+            },
+            // Add more posts as needed
+        ];
+
+        // Function to render posts
+        function renderPosts(category = 'all') {
+            const container = document.getElementById('postContainer');
+            container.innerHTML = '';
+
+            const filteredPosts = category === 'all' 
+                ? posts 
+                : posts.filter(post => post.category === category);
+
+            filteredPosts.forEach(post => {
+                const postEl = document.createElement('article');
+                postEl.className = 'post-card';
+                postEl.innerHTML = `
+                    <img src="${post.image}" alt="${post.title}" class="post-image">
+                    <h2>${post.title}</h2>
+                    <small>${post.date} | ${post.category}</small>
+                    <p>${post.excerpt}</p>
+                    <a href="#" class="read-more">Read More</a>
+                `;
+                container.appendChild(postEl);
+            });
+        }
+
+        // Category Filter
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelector('.nav-item.active').classList.remove('active');
+                item.classList.add('active');
+                renderPosts(item.dataset.category);
+            });
+        });
+
+        // Initial render
+        renderPosts();
+
+        // Infinite Scroll
+        window.addEventListener('scroll', () => {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
+                // Add logic to load more posts
+            }
+        });
+
+        // SEO Optimization
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add structured data
+            const schemaScript = document.createElement('script');
+            schemaScript.type = 'application/ld+json';
+            schemaScript.textContent = JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Blog",
+                "name": "TechNomad Blog",
+                "description": "A professional blogging platform featuring technology, travel, and lifestyle content"
+            });
+            document.head.appendChild(schemaScript);
+        });
+    </script>
+</body>
+</html>
